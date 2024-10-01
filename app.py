@@ -25,6 +25,7 @@ Enter "priority" to modify the priority level of an existing task
 Enter "update" to update completion status of tasks
 Enter "exit" to exit the program
 What would you like to do? ''')
+    
     #The adding tasks menu. Includes ability to keep adding tasks until finished, then returns to main menu.
     if main_menu_nav == 'add':
         print ('''
@@ -52,6 +53,10 @@ This is the adding tasks menu. Please note that new tasks will be defaulted as i
 
     #Deleting tasks menu, calls delete task funtion in the task_manager.py module
     elif main_menu_nav == 'delete':
+        if task_list == []:
+            print ('''
+There are currently no tasks, returning to main menu.''')
+            continue
         print ('''
 This is the deleting tasks menu.''')
         while True:
@@ -65,15 +70,44 @@ This is the deleting tasks menu.''')
                 print ('Sorry, I don\'t recognize this command. Please try again.')
                 continue
 
-    #modify the priority level of exisiting tasks
+    #change priority of existing tasks
     elif main_menu_nav == 'priority':
-        #to do
-        continue
+        if task_list == []:
+            print ('''
+There are currently no tasks, returning to main menu.''')
+            continue
+        print ('''
+This is the task priority modification menu.''')
+        while True:
+            task_list = tm.taskprio(task_list)
+            continue_prio = input ('Would you like to continue modifying task priority? Enter "y" for yes, "n" for no. ')
+            if continue_prio == 'y':
+                continue
+            elif continue_prio == 'n':
+                break
+            else:
+                print ('Sorry, I don\'t recognize this command. Please try again.')
+                continue
 
-    #update completetion status of exisiting tasks
+
+    #mark completion of exisiting tasks
     elif main_menu_nav == 'update':
-        #to do
-        continue
+        if task_list == []:
+            print ('''
+There are currently no tasks, returning to main menu.''')
+            continue
+        print ('''
+This is the updating task completion menu.''')
+        while True:
+            task_list = tm.taskupdate(task_list)
+            continue_update = input ('Would you like to continue updating task completion? Enter "y" for yes, "n" for no. ')
+            if continue_update == 'y':
+                continue
+            elif continue_update == 'n':
+                break
+            else:
+                print ('Sorry, I don\'t recognize this command. Please try again.')
+                continue
 
     #Exit program command with asking for confirmation
     elif main_menu_nav == 'exit':        
@@ -91,6 +125,7 @@ Are you sure you want to exit? Progress will not be saved. Enter "y" for yes, "n
             continue
     else:
         print ('Sorry, I don\'t recognize this command. Please try again.')
+
         continue
 
 

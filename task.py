@@ -1,5 +1,5 @@
 """
-Module for functions pretaining to data of the tasks
+Module for functions pretaining to viewing tasks
 """
 
 #viewing tasks function
@@ -14,10 +14,3 @@ There are currently no tasks, returning to main menu.''')
             print (i[0], ',', (i[1]), 'priority,', i[2])
 
 
-
-"""
-#function test
-task_list = [['1','2','3'],['4','5','6'],['7','8','9']]       
-for i in task_list:
-            print (i[0], ',', (i[1]), 'priority,', i[2])
-"""
