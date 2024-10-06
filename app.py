@@ -27,13 +27,13 @@ What would you like to do? ''')
     
     #The adding tasks menu. 
     if main_menu_nav == 'add':
-        print ('''
-This is the adding tasks menu. Please note that new tasks will be defaulted as incomplete''')
         while True:    
             #Calls upon the addtask function and assigns the added tasks as a list to new_items. If the returned list is empty, recognizes that no new tasks were added.
-            new_items = tm.addtask()    
-            if new_items == []:     
-                print ('No new tasks added.')
+            new_items = tm.addtask(task_list)    
+            if new_items == []:                    
+                break
+            elif new_items == 'na':
+                continue
             else:
                 #Puts the new_items into task_list, making a nested list. Each nested list contains data on the name, priority level and completion status. 
                 task_list.append(new_items) 
@@ -41,22 +41,21 @@ This is the adding tasks menu. Please note that new tasks will be defaulted as i
             continue_adding = t.yes_no_question("continue adding tasks?")
             if continue_adding == 'n':
                 break
-           
+
     #The viewing tasks menu.
     elif main_menu_nav == 'view':
         #Calls upon the viewtasks function that displays all tasks.
         t.viewtask(task_list)   
-        continue
 
     #The deleting tasks menu.
     elif main_menu_nav == 'delete':
-        if task_list == []: 
-            print ('''
-There are currently no tasks, returning to main menu.''')
-            continue
-        print ('''
-This is the deleting tasks menu.''')
         while True:
+            if task_list == []: 
+                print ('''
+There are currently no tasks, returning to main menu.''')
+                break
+            print ('''
+This is the deleting tasks menu.''')        
             #Calls upon the deletetask fuction that deletes tasks and updates the task_list list.
             task_list = tm.deletetask(task_list)    
             #Call upon yes_no_question function to ask if the user wants to continue deleting tasks with continue_deleting set to the output.         
@@ -104,13 +103,15 @@ This is the updating task completion menu.''')
             continue_exiting = t.yes_no_question("exit the program? Progress will not be saved.")
             if continue_exiting == 'n':
                 break        
-            print ('Thank you for using the Task Manager System, goodbye.')
+            print ('''
+Thank you for using the Task Manager System, goodbye.''')
             exit()
             
             
     else:
         #For when the user inputs an unrecognized command in the main menu.
-        print ('Sorry, I don\'t recognize this command. Please try again.')     
+        print ('''
+Sorry, I don\'t recognize this command. Please try again.''')     
 
         continue
 
